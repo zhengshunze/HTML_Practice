@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+</head>
+
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
+
+    * {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    h1,
+    p,
+    h2,
+    h3,
+    h4,
+    ul,
+    li,
+    div {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 0;
+        width: ㄉ00vw;
+        height: 100vh;
+        overflow: hidden;
+        display: -webkit-box;
+        display: flex;
+        font-family: Roboto;
+    }
+
+    .loading-page {
+        background: linear-gradient(#e66465, #9198e5);       
+         width: 200vw;
+        height: 100vh;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .loading-page .counter {
+        text-align: center;
+    }
+
+    .loading-page .counter p {
+        font-size: 40px;
+        font-weight: 100;
+        color: #ffffff;
+    }
+
+    .loading-page .counter h1 {
+        color: white;
+        font-size: 60px;
+        margin-top: -10px;
+    }
+
+    .loading-page .counter hr {
+        background: #ffffff;
+        border: none;
+        height: 5px;
+        border-radius: 16px;
+    }
+
+    .loading-page .counter {
+        position: relative;
+        width: 200px;
+    }
+
+    .loading-page .counter h1.abs {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .loading-page .counter .color {
+        width: 0px;
+        overflow: hidden;
+        color: #f60d54;
+    }
+</style>
+
+<body>
+
+    <div class="loading-page">
+        <div class="counter">
+            <p>載入中</p>
+            <h1>0%</h1>
+            <hr />
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            var counter = 0;
+            var c = 0;
+            var i = setInterval(function () {
+                $(".loading-page .counter h1").html(c + "%");
+                $(".loading-page .counter hr").css("width", c + "%");
+
+
+
+                counter++;
+                c++;
+
+                if (counter == 101) {
+                    clearInterval(i);
+                    setTimeout("window.open('https://www.google.com', '_blank')", 500)
+                }
+            }, 20);
+        });
+    </script>
+
+
+
+</body>
+
+
+
+
+</html>
