@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <style type="text/css">
+        input {
+            width: 120px;
+            height: 50px;
+            border: solid 1px #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-family: LiHei Pro;
+            font-size: 24px;
+           
+        }
+
+        .code {
+
+            font-family: LiHei Pro;
+            width: 110px;
+            font-style: italic;
+            color: green;
+            border: 0;
+            padding: 2px 3px;
+            letter-spacing: 3px;
+            font-weight: bolder;
+        }
+
+        .unchanged {
+            border: 0;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            width: 80%;
+            height: 50%;
+            font-family: LiHei Pro;
+            font-size: 24px;
+            border-radius: 8px;
+        }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 30px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 25%;
+            /* Full height */
+            overflow: hidden;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+        var code;
+        function createCode() {
+            code = new Array();
+            var codeLength = 5;
+            var checkCode = document.getElementById("checkCode");
+            checkCode.value = "";
+
+            var selectChar = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '@', '!', '#', '$', '%',
+                '&', '*');
+
+            for (var i = 0; i < codeLength; i++) {
+                var charIndex = Math.floor(Math.random() * 40);
+                code += selectChar[charIndex];
+            }
+            if (code.length != codeLength) {
+                createCode();
+            }
+            checkCode.value = code;
+        }
+
+        function validate() {
+            var inputCode = document.getElementById("input1").value.toUpperCase();
+            var obj = document.getElementById("p");
+            if (inputCode.length <= 0) {
+                obj.innerText = "請輸入驗證碼!";
+                return false;
+            }
+            else if (inputCode != code) {
+                obj.innerText = "驗證瑪輸入錯誤！";
+                createCode();
+                return false;
+            }
+            else {
+                obj.innerText = "成功!";
+                return true;
+            }
+        }
+    </script>
+
+
+</head>
+
+<body onLoad="createCode();">
+
+    <input type="text" id="input1"/>
+    <!-- onClick="createCode()" -->
+    <input type="button" id="checkCode" class="code"/>
+    <input id="Button2" onclick="createCode()" type="button" value="重新產生" />
+    <input id="Button1" onClick="validate();" type="button" value="確定"
+        style=background-color:#2679BC;color:white;text-shadow:0px 0px 0px black; />
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="p"></p>
+        </div>
+    </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("Button1");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            validate();
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
